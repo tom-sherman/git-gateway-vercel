@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"log"
 	"net/http"
 	"reflect"
 	"time"
@@ -44,6 +45,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	)
 
 	handler := GetApiHandler(api)
+	log.Default().Println("Calling handler")
 	handler.ServeHTTP(w, r)
 }
 
