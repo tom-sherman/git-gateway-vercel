@@ -46,10 +46,9 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetApiHandler(api *api.API) http.Handler {
-	r := reflect.ValueOf(api)
-	v := reflect.Indirect(r).FieldByName("handler")
+	rs := reflect.ValueOf(api).Elem().FieldByName("handler")
 
-	return v.Interface().(http.Handler)
+	return rs.Interface().(http.Handler)
 }
 
 type DummyConnection struct{}
