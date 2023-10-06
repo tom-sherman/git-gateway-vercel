@@ -32,33 +32,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 
 	api := api.NewAPIWithVersion(
 		ctx,
-		&conf.GlobalConfiguration{
-			API: struct {
-				Host     string
-				Port     int "envconfig:\"PORT\" default:\"8081\""
-				Endpoint string
-			}{
-				Host:     "localhost", // Should be unused
-				Port:     8081,        // Should be unused
-				Endpoint: "api",
-			},
-			// None of this should be used as we're passing a dummy connection
-			DB: conf.DBConfiguration{
-				Dialect:     "dummy",
-				Driver:      "dummy",
-				URL:         "dummy",
-				Automigrate: false, // We don't have a database so we don't need to migrate
-				Namespace:   "dummy",
-			},
-			Logging: conf.LoggingConfig{
-				Level:            "info",
-				File:             "dummy",
-				DisableColors:    false,
-				QuoteEmptyFields: true,
-				TSFormat:         time.RFC3339Nano,
-				Fields:           map[string]interface{}{},
-			},
-		},
+		&conf.GlobalConfiguration{},
 		NewDummyConnection(),
 		"v1",
 	)
