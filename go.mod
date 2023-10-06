@@ -5,6 +5,7 @@ go 1.20
 require (
 	github.com/kelseyhightower/envconfig v1.3.0
 	github.com/netlify/git-gateway v0.6.1-0.20230808080557-65848d73a830
+	github.com/sirupsen/logrus v1.4.2
 )
 
 require (
@@ -29,7 +30,6 @@ require (
 	github.com/pkg/errors v0.8.1 // indirect
 	github.com/rs/cors v0.0.0-20170608165155-8dd4211afb5d // indirect
 	github.com/sebest/xff v0.0.0-20160910043805-6c115e0ffa35 // indirect
-	github.com/sirupsen/logrus v1.4.2 // indirect
 	go.opencensus.io v0.24.0 // indirect
 	go.uber.org/atomic v1.7.0 // indirect
 	go.uber.org/multierr v1.6.0 // indirect
