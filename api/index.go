@@ -2,7 +2,6 @@ package handler
 
 import (
 	"errors"
-	"log"
 	"net/http"
 	"reflect"
 	"time"
@@ -46,8 +45,10 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		NewDummyConnection(),
 	)
 
+	// Remove /api from the path
+	r.URL.Path = r.URL.Path[4:]
+
 	handler := GetApiHandler(api)
-	log.Default().Println("Calling handler")
 	handler.ServeHTTP(w, r)
 }
 
