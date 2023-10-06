@@ -4,6 +4,7 @@ import (
 	"net/http"
 	"reflect"
 	"time"
+	"unsafe"
 
 	"github.com/netlify/git-gateway/api"
 	"github.com/netlify/git-gateway/conf"
@@ -48,7 +49,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 func GetApiHandler(api *api.API) http.Handler {
 	rs := reflect.ValueOf(api).Elem().FieldByName("handler")
 
-	return rs.Interface().(http.Handler)
+	return reflect.NewAt(rs.Type(), unsafe.Pointer(rs.UnsafeAddr())).Elem().Interface().(http.Handler)
 }
 
 type DummyConnection struct{}
