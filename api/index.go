@@ -49,6 +49,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	handler.ServeHTTP(w, r)
 }
 
+// This is a hack to get the handler from the API as it's not exported
 func GetApiHandler(api *api.API) http.Handler {
 	rs := reflect.ValueOf(api).Elem().FieldByName("handler")
 
