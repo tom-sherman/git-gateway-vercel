@@ -3,6 +3,11 @@ module github.com/tom-sherman/go-test
 go 1.20
 
 require (
+	github.com/kelseyhightower/envconfig v1.3.0
+	github.com/netlify/git-gateway v0.6.1-0.20230808080557-65848d73a830
+)
+
+require (
 	cloud.google.com/go/compute v1.13.0 // indirect
 	cloud.google.com/go/compute/metadata v0.2.2 // indirect
 	github.com/GoogleCloudPlatform/cloudsql-proxy v1.33.2 // indirect
@@ -18,11 +23,9 @@ require (
 	github.com/jinzhu/gorm v0.0.0-20170723080543-5b8c0dd6b92d // indirect
 	github.com/jinzhu/inflection v0.0.0-20170102125226-1c35d901db3d // indirect
 	github.com/joho/godotenv v0.0.0-20161216230537-726cc8b906e3 // indirect
-	github.com/kelseyhightower/envconfig v1.3.0 // indirect
 	github.com/konsorten/go-windows-terminal-sequences v1.0.2 // indirect
 	github.com/lib/pq v1.10.7 // indirect
-	github.com/mattn/go-sqlite3 v2.0.2+incompatible // indirect
-	github.com/netlify/git-gateway v0.6.1-0.20230808080557-65848d73a830 // indirect
+	github.com/mattn/go-sqlite3 v1.14.17 // indirect
 	github.com/pborman/uuid v0.0.0-20160209185913-a97ce2ca70fa // indirect
 	github.com/pkg/errors v0.8.1 // indirect
 	github.com/rs/cors v0.0.0-20170608165155-8dd4211afb5d // indirect
