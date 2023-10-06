@@ -20,7 +20,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	ctx, err := api.WithInstanceConfig(r.Context(), &config, INSTANCE_ID)
 
 	// Can't set info level in production because git gateway logs the access token :-/
-	logrus.SetLevel(logrus.WarnLevel)
+	logrus.SetLevel(logrus.InfoLevel)
 	if env := os.Getenv("VERCEL_ENV"); env != "" && env != "production" {
 		logrus.SetLevel(logrus.DebugLevel)
 	}

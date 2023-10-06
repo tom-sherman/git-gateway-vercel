@@ -45,3 +45,5 @@ require (
 	google.golang.org/grpc v1.51.0 // indirect
 	google.golang.org/protobuf v1.28.1 // indirect
 )
+
+replace github.com/netlify/git-gateway v0.6.1-0.20230808080557-65848d73a830 => github.com/tom-sherman/git-gateway v0.6.1-02c5aeb6093f94ff6b6e17c28cd725ebdd4c64e1
