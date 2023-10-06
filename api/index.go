@@ -23,6 +23,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 				Port:     8081,
 				Endpoint: "api",
 			},
+			// None of this should be used as we're passing a dummy connection
 			DB: conf.DBConfiguration{
 				Dialect:     "dummy",
 				Driver:      "dummy",
@@ -52,6 +53,8 @@ func GetApiHandler(api *api.API) http.Handler {
 	return reflect.NewAt(rs.Type(), unsafe.Pointer(rs.UnsafeAddr())).Elem().Interface().(http.Handler)
 }
 
+// It's like a database connection but it's fake
+// We don't care about being multi-tenant, so we can just always return the same instance
 type DummyConnection struct{}
 
 func (d *DummyConnection) Close() error {
