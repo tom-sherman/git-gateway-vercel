@@ -14,7 +14,16 @@ import (
 )
 
 func Handler(w http.ResponseWriter, r *http.Request) {
-	api := api.NewAPI(
+	config := GetConfiguration()
+	ctx, err := api.WithInstanceConfig(r.Context(), &config, INSTANCE_ID)
+
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	api := api.NewAPIWithVersion(
+		ctx,
 		&conf.GlobalConfiguration{
 			API: struct {
 				Host     string
@@ -43,6 +52,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 			},
 		},
 		NewDummyConnection(),
+		"v1",
 	)
 
 	handler := GetApiHandler(api)
