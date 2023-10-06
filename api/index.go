@@ -3,6 +3,7 @@ package handler
 import (
 	"errors"
 	"net/http"
+	"os"
 	"reflect"
 	"time"
 	"unsafe"
@@ -11,11 +12,18 @@ import (
 	"github.com/netlify/git-gateway/api"
 	"github.com/netlify/git-gateway/conf"
 	"github.com/netlify/git-gateway/models"
+	"github.com/sirupsen/logrus"
 )
 
 func Handler(w http.ResponseWriter, r *http.Request) {
 	config := GetConfiguration()
 	ctx, err := api.WithInstanceConfig(r.Context(), &config, INSTANCE_ID)
+
+	// Can't set info level in production because git gateway logs the access token :-/
+	logrus.SetLevel(logrus.WarnLevel)
+	if env := os.Getenv("VERCEL_ENV"); env != "" && env != "production" {
+		logrus.SetLevel(logrus.DebugLevel)
+	}
 
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
