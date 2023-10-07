@@ -17,7 +17,6 @@ import (
 
 func Handler(w http.ResponseWriter, r *http.Request) {
 	config := GetConfiguration()
-	config.ApplyDefaults()
 	ctx, err := api.WithInstanceConfig(r.Context(), &config, INSTANCE_ID)
 
 	// Can't set info level in production because git gateway logs the access token :-/
@@ -52,6 +51,7 @@ func GetApiHandler(api *api.API) http.Handler {
 func GetConfiguration() conf.Configuration {
 	var c conf.Configuration
 	envconfig.Process("gitgateway", &c)
+	c.ApplyDefaults()
 	return c
 }
 
