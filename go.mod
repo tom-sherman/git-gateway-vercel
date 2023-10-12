@@ -1,4 +1,4 @@
-module github.com/tom-sherman/go-test
+module github.com/tom-sherman/git-gateway-vercel
 
 go 1.20
 
